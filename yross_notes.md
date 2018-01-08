@@ -98,8 +98,9 @@ POST /product/default/_bulk
 { "doc" : {"price": 1000 } }
 { "delete" : { "_id": "101"} }
 ```
+```json
 GET product/default/100
-
+```
 # health
 GET _cat/health?v
 # nodes
@@ -113,8 +114,10 @@ GET _cat/shards?v
 
 
 # mapping
+```json
 GET product/default/_mapping
-
+```
+```json
 PUT product/default/_mapping
 {
   "properties": {
@@ -123,8 +126,10 @@ PUT product/default/_mapping
     }
   }
 }
+```
 
 # mapping - types and fields
+```json
 PUT /product
 {
   "mappings": {
@@ -147,8 +152,10 @@ PUT /product
     }
   }
 }
+```
 
 # mapping - dates
+```json
 PUT product/default/_mapping
 {
   "properties": {
@@ -158,7 +165,10 @@ PUT product/default/_mapping
     }
   }
 }
+```
+
 # mapping - keywords
+```json
 PUT product/default/_mapping
 {
   "properties": {
@@ -183,9 +193,10 @@ PUT product/default/_mapping
     }
   }
 }
+```
 
 # analyzers
-
+```json
 POST _analyze
 {
   "tokenizer": "standard",
@@ -341,6 +352,7 @@ GET analyzers_test/default/_search
     }
   }
 }
+```
 
 # no result - using stemmer drinking to drink
 GET analyzers_test/default/_search
