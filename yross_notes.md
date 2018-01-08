@@ -355,6 +355,7 @@ GET analyzers_test/default/_search
 ```
 
 # no result - using stemmer drinking to drink
+```json
 GET analyzers_test/default/_search
 {
   "query" : {
@@ -365,9 +366,11 @@ GET analyzers_test/default/_search
     }
   }
 }
+```
 
 # Dynamic index - changing settings
 
+```json
 POST analyzers_test/_close
 
 PUT analyzers_test/_settings
@@ -383,21 +386,27 @@ PUT analyzers_test/_settings
 }
 
 POST analyzers_test/_open
+```
 
 # search - request URI
+```json
 GET product/default/_search?q=*
 GET product/default/_search?q=name:Lobster
 GET product/default/_search?q=tags:Meat AND name:Tuna
+```
 
 # search match_all
+```json
 GET product/default/_search
 {
   "query": {
     "match_all": {}
   }
 }
+```
 
 # search explain
+```json
 GET product/default/_search?explain
 {
   "query": {
@@ -408,8 +417,10 @@ GET product/default/_search?explain
     }
   }
 }
+```
 
 # search debug
+```json
 GET product/default/1/_explain
 {
   "query" : {
@@ -420,8 +431,10 @@ GET product/default/1/_explain
     }
   }
 }
+```
 
 # search using term (not analyzed)
+```json
 GET product/default/_search
 {
   "query": {
@@ -432,8 +445,10 @@ GET product/default/_search
     }
   }
 }
+```
 
 # search multiple terms
+```json
 GET product/default/_search
 {
   "query": {
@@ -445,8 +460,10 @@ GET product/default/_search
     }
   }
 }
+```
 
 # retrive documents by IDs
+```json
 GET product/default/_search
 {
   "query": {
@@ -455,8 +472,10 @@ GET product/default/_search
     }
   }
 }
+```
 
 # retrieve documets with range (value)
+```json
 GET product/default/_search
 {
   "query": {
@@ -468,8 +487,10 @@ GET product/default/_search
     }
   }
 }
+```
 
 # retrieve documets with range (date)
+```json
 GET product/default/_search
 {
   "query": {
@@ -482,8 +503,10 @@ GET product/default/_search
     }
   }
 }
+```
 
 # retrieve documets with range (relative date)
+```json
 GET product/default/_search
 {
   "query": {
@@ -505,9 +528,10 @@ GET product/default/_search
     }
   }
 }
-
+```
 
 # retrieve document with non-null values
+```json
 GET product/default/_search
 {
   "query": {
@@ -516,8 +540,10 @@ GET product/default/_search
     }
   }
 }
+```
 
 # retrieve document matching on prefixed
+```json
 GET product/default/_search
 {
   "query": {
@@ -528,8 +554,10 @@ GET product/default/_search
     }
   }
 }
+```
 
 # searching using wildcard
+```json
 GET product/default/_search
 {
   "query": {
@@ -540,8 +568,10 @@ GET product/default/_search
     }
   }
 }
+```
 
 # searching using regular expressions
+```json
 GET product/default/_search
 {
   "query": {
@@ -552,9 +582,10 @@ GET product/default/_search
     }
   }
 }
-
+```
 
 ## Lesson 01
+```json
 GET product/default/_search
 {
   "query": {
@@ -624,8 +655,10 @@ GET product/default/_search
 }
 
 GET recipe/default/_mapping
+```
 
 # matching with match query (operators OR AND)
+```json
 GET recipe/default/_search
 {
   "query": {
@@ -658,8 +691,10 @@ GET recipe/default/_search
     }
   }
 }
+```
 
 # matching phrases - The order of the values is important
+```json
 GET recipe/default/_search
 {
   "query": {
@@ -668,8 +703,10 @@ GET recipe/default/_search
     }
   }
 }
+```
 
 # searching multi fields
+```json
 GET recipe/default/_search
 {
   "query": {
@@ -679,10 +716,10 @@ GET recipe/default/_search
     }
   }
 }
-
+```
 
 ## Lesson 02
-
+```json
 GET recipe/default/_search
 {
   "query": {
@@ -715,8 +752,10 @@ GET recipe/default/_search
     }
   }
 }
+```
 
 # searchig bool logic - must
+```json
 GET recipe/default/_search
 {
   "query": {
@@ -738,8 +777,10 @@ GET recipe/default/_search
     }
   }
 }
+```
 
 # searchig bool logic - must and filter
+```json
 GET recipe/default/_search
 {
   "query": {
@@ -763,8 +804,10 @@ GET recipe/default/_search
     }
   }
 }
+```
 
 # searchig bool logic - must, must_not and filter
+```json
 GET recipe/default/_search
 {
   "query": {
@@ -802,8 +845,10 @@ GET recipe/default/_search
     }
   }
 }
+```
 
 # searchig bool logic - should
+```json
 GET recipe/default/_search
 {
   "query": {
@@ -825,8 +870,10 @@ GET recipe/default/_search
     }
   }
 }
+```
 
 # searchig bool logic - named queries
+```json
 GET recipe/default/_search
 {
   "query": {
@@ -874,12 +921,13 @@ GET recipe/default/_search
     }
   }
 }
+```
 
-# MUST similar to AND
-# SHOULD similar to OR
+### MUST similar to AND
+### SHOULD similar to OR
 
 # nested objects
-
+```json
 PUT /department
 {
   "mappings": {
@@ -895,7 +943,8 @@ PUT /department
     }
   }
 }
-
+```
+```json
 POST /department/default/1
 {
   "name": "Development",
@@ -932,7 +981,8 @@ POST /department/default/1
     }
   ]
 }
-
+```
+```json
 POST /department/default/2
 {
   "name": "HR & Marketing",
@@ -999,8 +1049,10 @@ POST /department/default/2
     }
   ]
 }
+```
 
 # this query don't work with nested objects 
+```json
 GET department/default/_search
 {
   "query": {
@@ -1022,8 +1074,10 @@ GET department/default/_search
     }
   }
 }
+```
 
 # search using nested queries
+```json
 GET department/default/_search
 {
   "query": {
@@ -1050,9 +1104,10 @@ GET department/default/_search
     }
   }
 }
-
+```
 
 # source filtering
+```json
 GET recipe/default/_search
 {
   "_source": "ingredients.*", 
@@ -1062,9 +1117,10 @@ GET recipe/default/_search
     }
   }
 }
-
+```
 
 # filter
+```json
 GET recipe/default/_search
 {
   "query": {
@@ -1088,9 +1144,10 @@ GET recipe/default/_search
     }
   }
 }
-
+```
 
 # orders
+```json
 PUT /order
 {
   "mappings": {
@@ -1141,9 +1198,10 @@ PUT /order
 GET /order/_mapping
 
 GET order/default/_search
+```
 
 # metric aggregation
-
+```json
 GET order/default/_search
 {
   "size": 0,
@@ -1170,8 +1228,10 @@ GET order/default/_search
     }
   }
 }
+```
 
 # metric aggregation cardinality (distinct values)
+```json
 GET order/default/_search
 {
   "size": 0,
@@ -1183,9 +1243,11 @@ GET order/default/_search
     }
   }
 }
+```
 
-# Query with aggregation.
-# The aggregation sum the amount of documents used
+### Query with aggregation.
+### The aggregation sum the amount of documents used
+```json
 GET order/default/_search
 {
   "_source": "total_amount", 
@@ -1210,8 +1272,10 @@ GET order/default/_search
     }
   }
 }
+```
 
 # metric aggregation stats
+```json
 GET order/default/_search
 {
   "size": 0,
@@ -1223,8 +1287,10 @@ GET order/default/_search
     }
   }
 }
+```
 
 # buckets aggregation
+```json
 GET order/default/_search
 {
   "size": 0,
@@ -1241,8 +1307,10 @@ GET order/default/_search
     }
   }
 }
+```
 
 # buckets aggregation
+```json
 GET order/default/_search
 {
   "size": 0,
@@ -1255,8 +1323,10 @@ GET order/default/_search
     }
   }
 }
+```
 
 # buckets aggregation - nested
+```json
 GET order/default/_search
 {
   "size": 0,
@@ -1283,8 +1353,10 @@ GET order/default/_search
     }
   }
 }
+```
 
 # buckets aggregation nested - filter
+```json
 GET order/default/_search
 {
   "size": 0,
@@ -1307,8 +1379,10 @@ GET order/default/_search
     }
   }
 }
+```
 
 # buckets aggregation filter rules
+```json
 GET recipe/default/_search
 {
   "size": 0,
@@ -1338,8 +1412,10 @@ GET recipe/default/_search
     }
   }
 }
+```
 
 # aggregation range values
+```json
 GET order/default/_search
 {
   "size": 0,
@@ -1363,8 +1439,10 @@ GET order/default/_search
     }
   }
 }
+```
 
 # aggregation - range dates
+```json
 GET order/default/_search
 {
   "size": 0,
@@ -1397,8 +1475,10 @@ GET order/default/_search
     }
   }
 }
+```
 
 # aggregation histograms intervals
+```json
 GET order/default/_search
 {
   "size": 0, 
@@ -1423,8 +1503,10 @@ GET order/default/_search
     }
   }
 }
+```
 
 # aggregation histograms date
+```json
 GET order/default/_search
 {
   "size": 0, 
@@ -1448,8 +1530,10 @@ GET order/default/_search
     }
   }
 }
+```
 
 # aggregation global
+```json
 GET order/default/_search
 {
   "query": {
@@ -1478,7 +1562,6 @@ GET order/default/_search
     }
   }
 }
-
 
 POST order/default/1001
 {
@@ -1537,8 +1620,10 @@ PUT /proximity/default/5
 {
   "title": "Spicy and very delicious Tomato Sauce"
 }
+```
 
 # search proximity
+```json
 GET /proximity/default/_search
 {
   "query": {
@@ -1550,8 +1635,10 @@ GET /proximity/default/_search
     }
   }
 }
+```
 
 # relevance score with proximity
+```json
 GET /proximity/default/_search
 {
   "query": {
@@ -1578,9 +1665,11 @@ GET /proximity/default/_search
     }
   }
 }
+```
 
 # fuzzness
-# max fuzzness MUST be 2
+### max fuzzness MUST be 2
+```json
 GET /product/default/_search
 {
   "query": {
@@ -1605,10 +1694,12 @@ GET /product/default/_search
     }
   }
 }
+```
 
 # fuzzness + transposition
-# AB <-> BA
-# lvie <-> live
+### AB <-> BA
+### lvie <-> live
+```json
 GET /product/default/_search
 {
   "query": {
@@ -1621,9 +1712,11 @@ GET /product/default/_search
     }
   }
 }
+```
 
 # fuzz query
-# not analyzed
+### not analyzed
+```json
 GET /product/default/_search
 {
   "query": {
@@ -1647,8 +1740,10 @@ GET /product/default/_search
     }
   }
 }
+```
 
 # synonyms
+```json
 PUT /synonyms
 {
   "settings": {
@@ -1724,9 +1819,10 @@ GET /synonyms/default/_search
     }
   }
 }
+```
 
 # highlights
-
+```json
 POST /highlighting/default/1
 {
   "description": "Let me tell you a story about Elasticsearch. It's a full-text search engine that is built on Apache Lucene. It's really easy to use, but also packs lots of advanced features that you can use to tweak its searching capabilities. Lots of well-known and established companies use Elasticsearch, and so should you!"
@@ -1744,9 +1840,10 @@ GET /highlighting/default/_search
     }
   }
 }
-
+```
 
 # stemming
+```json
 PUT /stemming_test
 {
   "settings": {
@@ -1788,12 +1885,10 @@ PUT /stemming_test
   }
 }
 
-
 POST /stemming_test/default/1
 {
   "description": "I love working for my firm!"
 }
-
 
 GET /stemming_test/default/_search
 {
@@ -1808,4 +1903,4 @@ GET /stemming_test/default/_search
     }
   }
 }
-
+```
