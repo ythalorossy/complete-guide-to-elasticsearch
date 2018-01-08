@@ -1,10 +1,13 @@
 # create index
+```json
 PUT /product?pretty
-
+```
 # delete index
+```json
 DELETE product
-
+```
 # indexing document
+```json
 POST /product/default
 {
   "name": "Processing Events with Logstash",
@@ -13,8 +16,10 @@ POST /product/default
     "lastName" : "Andersen"
   }
 }
+```
 
 # indexing document with id
+```json
 POST /product/default/1
 {
   "name": "Complete guide to Elasticsearch",
@@ -23,11 +28,15 @@ POST /product/default/1
     "lastName" : "Andersen"
   }
 }
+```
 
 # retrieving document by id
+```json
 GET /product/default/1
+```
 
 # replacing documet
+```json
 PUT /product/default/1
 {
   "name": "Complete guide to Elasticsearch",
@@ -37,23 +46,31 @@ PUT /product/default/1
   },
   "price": 195
 }
+```
 
 # updating document
+```json
 POST /product/default/1/_update
 {
   "doc" : { "price": 95, "tags" : ["Elasticsearch"]}
 }
+```
 
 # updating document using scripts
+```json
 POST product/default/1/_update
 {
   "script" : "ctx._source.price += 10"
 }
+```
 
 # delete document
+```json
 DELETE /product/default/1
+```
 
 # upsert document
+```json
 POST product/default/1/_update
 {
   "script" : "ctx._source.price += 5",
@@ -61,11 +78,15 @@ POST product/default/1/_update
     "price": 100
   }
 }
+```
 
 # delete index
+```json
 DELETE /product
+```
 
 # bulk
+```json
 POST /product/default/_bulk
 { "index": { "_id": "100" }}
 { "price": 100 }
@@ -76,7 +97,7 @@ POST /product/default/_bulk
 { "update" : { "_id": "100" } }
 { "doc" : {"price": 1000 } }
 { "delete" : { "_id": "101"} }
-
+```
 GET product/default/100
 
 # health
