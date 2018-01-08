@@ -1,7 +1,7 @@
 # create index
 PUT /product?pretty
 
-#delete index
+# delete index
 DELETE product
 
 # indexing document
@@ -38,7 +38,7 @@ PUT /product/default/1
   "price": 195
 }
 
-#updating document
+# updating document
 POST /product/default/1/_update
 {
   "doc" : { "price": 95, "tags" : ["Elasticsearch"]}
@@ -50,7 +50,7 @@ POST product/default/1/_update
   "script" : "ctx._source.price += 10"
 }
 
-#delete document
+# delete document
 DELETE /product/default/1
 
 # upsert document
@@ -137,7 +137,7 @@ PUT product/default/_mapping
     }
   }
 }
-
+# mapping - keywords
 PUT product/default/_mapping
 {
   "properties": {
@@ -162,8 +162,6 @@ PUT product/default/_mapping
     }
   }
 }
-
-
 
 # analyzers
 
@@ -217,7 +215,6 @@ POST /existing_analyzer_config/_analyze
   "filter": [ "my_stemmer" ],
   "text" : "I'm in the mood for drinking semi-dry red wine!"
 }
-
 
 PUT /existing_analyzer_config
 {
@@ -336,6 +333,8 @@ GET analyzers_test/default/_search
   }
 }
 
+# Dynamic index - changing settings
+
 POST analyzers_test/_close
 
 PUT analyzers_test/_settings
@@ -351,7 +350,6 @@ PUT analyzers_test/_settings
 }
 
 POST analyzers_test/_open
-
 
 # search - request URI
 GET product/default/_search?q=*
@@ -378,7 +376,7 @@ GET product/default/_search?explain
   }
 }
 
-#search debug
+# search debug
 GET product/default/1/_explain
 {
   "query" : {
@@ -402,7 +400,7 @@ GET product/default/_search
   }
 }
 
-#search multiple terms
+# search multiple terms
 GET product/default/_search
 {
   "query": {
@@ -425,7 +423,7 @@ GET product/default/_search
   }
 }
 
-#retrieve documets with range (value)
+# retrieve documets with range (value)
 GET product/default/_search
 {
   "query": {
@@ -438,7 +436,7 @@ GET product/default/_search
   }
 }
 
-#retrieve documets with range (date)
+# retrieve documets with range (date)
 GET product/default/_search
 {
   "query": {
@@ -452,7 +450,7 @@ GET product/default/_search
   }
 }
 
-#retrieve documets with range (relative date)
+# retrieve documets with range (relative date)
 GET product/default/_search
 {
   "query": {
@@ -523,7 +521,7 @@ GET product/default/_search
 }
 
 
-### Lesson 01
+## Lesson 01
 GET product/default/_search
 {
   "query": {
@@ -592,8 +590,6 @@ GET product/default/_search
   }
 }
 
-###
-
 GET recipe/default/_mapping
 
 # matching with match query (operators OR AND)
@@ -630,8 +626,7 @@ GET recipe/default/_search
   }
 }
 
-# matching phrases
-# The order of the values is important
+# matching phrases - The order of the values is important
 GET recipe/default/_search
 {
   "query": {
@@ -641,7 +636,7 @@ GET recipe/default/_search
   }
 }
 
-#searching multi fields
+# searching multi fields
 GET recipe/default/_search
 {
   "query": {
@@ -653,7 +648,7 @@ GET recipe/default/_search
 }
 
 
-### Lesson 02
+## Lesson 02
 
 GET recipe/default/_search
 {
@@ -849,8 +844,6 @@ GET recipe/default/_search
 
 # MUST similar to AND
 # SHOULD similar to OR
-
-
 
 # nested objects
 
@@ -1487,7 +1480,6 @@ GET order/default/_search
 DELETE order/default/1001
 DELETE order/default/1002
 
-
 PUT /proximity/default/1
 {
   "title": "Spicy Sauce"
@@ -1568,7 +1560,6 @@ GET /product/default/_search
   }
 }
 
-
 GET /product/default/_search
 {
   "query": {
@@ -1624,7 +1615,6 @@ GET /product/default/_search
   }
 }
 
-
 # synonyms
 PUT /synonyms
 {
@@ -1664,7 +1654,6 @@ PUT /synonyms
   }
 }
 
-
 POST /synonyms/_analyze
 {
   "analyzer": "my_analyzer",
@@ -1703,7 +1692,7 @@ GET /synonyms/default/_search
   }
 }
 
-#highlights
+# highlights
 
 POST /highlighting/default/1
 {
@@ -1724,7 +1713,7 @@ GET /highlighting/default/_search
 }
 
 
-#stemming
+# stemming
 PUT /stemming_test
 {
   "settings": {
